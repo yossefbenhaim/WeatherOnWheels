@@ -46,9 +46,10 @@ const CreateNewPlaceForm = () => {
 
 			const response = await axios.post('http://localhost:5000/api/createPlaces/', { place });
 
-			const { name, coordinates, placeType } = response.data
+			const { id, name, coordinates, placeType } = response.data
 
 			dispatch(addPlace({
+				id: id,
 				name: name,
 				placeType: placeType,
 				coordinates: coordinates

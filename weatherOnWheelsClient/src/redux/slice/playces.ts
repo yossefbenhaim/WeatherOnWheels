@@ -8,7 +8,14 @@ interface currentCoordinatesSelectPlace {
 }
 
 const initialState: currentCoordinatesSelectPlace = {
-    places: [],
+    places: [
+        {
+            id: '786578',
+            coordinates: [35.0818155, 31.4117257],
+            name: 'test',
+            placeType: '',
+        },
+    ],
 };
 
 const Places = createSlice({

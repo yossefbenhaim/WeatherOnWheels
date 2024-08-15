@@ -4,6 +4,9 @@ import "rlayers/control/layers.css";
 import { fromLonLat } from "ol/proj";
 import { RControl, RMap, ROSMWebGL } from "rlayers";
 import CreatePlaceLayer from "./layers/createPlaceLayer/createPlaceLayer";
+import UsersLocationLayer from "./layers/placesLayer/placesLayer";
+import { useLocation } from "react-router-dom";
+import { PathName } from "models/enums/pathName";
 
 
 
@@ -15,6 +18,7 @@ interface Props {
 	height: string
 }
 const Map = ({ height, width }: Props) => {
+	const currentPath = useLocation();
 
 	return (
 		<RMap
@@ -31,7 +35,8 @@ const Map = ({ height, width }: Props) => {
 			<RControl.RScaleLine />
 			<RControl.RZoom />
 			<RControl.RZoomSlider />
-			<CreatePlaceLayer />
+			{currentPath.pathname === PathName.CREATE_NEW_PLACE_FORM ? <CreatePlaceLayer /> : <UsersLocationLayer />}
+
 		</RMap>
 	);
 }
