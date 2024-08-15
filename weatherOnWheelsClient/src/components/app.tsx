@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { PathName } from "models/enums/pathName"
 
 import Library from "./library/library"
-import CreateNewPlaceForm from "./createNewPlaceForm/createNewPlaceForm"
 import PlacesOnMap from "./placesOnMap/placesOnMap"
+import CreateNewPlaceForm from "./createNewPlaceForm/createNewPlaceForm"
 
 
 const App = () => {
