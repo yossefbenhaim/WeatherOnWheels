@@ -1,13 +1,16 @@
 import { Router } from 'express';
 import {
     createPlaces,
-    getAllShortcutUrl,
+    getAllPlaces,
+    getWeather,
 } from '../controllers/placesController.ts';
 
 const router = Router();
 
 router.post('/createPlaces', createPlaces);
 
-router.get('/getPlaces', getAllShortcutUrl);
+router.post('/getWeather', getWeather);
+
+router.get('/getPlaces', getAllPlaces);
 
 export default router;

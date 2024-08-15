@@ -34,7 +34,6 @@ const CreateNewPlaceForm = () => {
 	const { handleSubmit, reset } = methods;
 
 	const onSubmit = async (data: CreateNewPlaceType) => {
-		console.log(data);
 
 		const place = {
 			name: data.name,

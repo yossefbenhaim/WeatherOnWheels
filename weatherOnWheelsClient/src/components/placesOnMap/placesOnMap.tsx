@@ -10,7 +10,7 @@ const PlacesOnMap = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get('http://localhost:5000/api/urls/getShortenedUrl');
+				const response = await axios.get('http://localhost:5000/api/getPlaces/');
 				dispatch(setPlaces(response.data.data));
 			} catch (error) {
 				if (axios.isAxiosError(error)) {
@@ -25,7 +25,7 @@ const PlacesOnMap = () => {
 
 	return (
 		<div>
-			<Map height='100vh' width='100vw' />
+			<Map height='80vh' width='100vw' />
 		</div>
 	)
 }

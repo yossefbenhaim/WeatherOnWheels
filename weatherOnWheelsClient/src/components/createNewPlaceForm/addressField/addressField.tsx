@@ -17,11 +17,7 @@ const AddressField = () => {
 
 	useEffect(() => {
 		if (currentCoordinatesPlace) {
-			console.log({ currentCoordinatesPlace });
-
 			findAddressByCoordinates(currentCoordinatesPlace as number[]).then((address) => {
-				console.log(address);
-
 				setLocation(address)
 				setValue(CreateNewPlaceFormKey.ADDRESS, address)
 			})
