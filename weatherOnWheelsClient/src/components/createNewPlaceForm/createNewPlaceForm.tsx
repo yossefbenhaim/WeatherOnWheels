@@ -1,40 +1,68 @@
-import { Controller, FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-import CreateNewPlaceSchema, { CreateNewPlaceFormKey, CreateNewPlaceType } from './createNewPlaceFormSchema';
-import { Places } from 'models/enums/places';
-import { TextField } from '@mui/material';
+import CreateNewPlaceSchema, { CreateNewPlaceType } from './createNewPlaceFormSchema';
 import NameField from './nameField/nameField';
 import SelectPlace from './selectPlace/selectPlace';
 import SubmitButton from './submitButton/submitButton';
 import { Map } from 'components/map';
 import AddressField from './addressField/addressField';
 
-
+import axios from 'axios'
+import { addPlace } from 'redux/slice/playces';
+import { useAppSelector } from 'redux/store';
 
 const CreateNewPlaceForm = () => {
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 	const [successMessage, setSuccessMessage] = useState('');
+	const currentCoordinatesPlace = useAppSelector(
+		(state) => state.currentCoordinatesPlace.coordinates.coordinates
+	);
 
 	const methods = useForm<CreateNewPlaceType>({
 		defaultValues: {
-
+			name: '',
+			address: '',
+			placeType: ''
 		},
 		resolver: zodResolver(CreateNewPlaceSchema)
 	});
 
-	const { handleSubmit } = methods;
+	const { handleSubmit, reset } = methods;
 
 	const onSubmit = async (data: CreateNewPlaceType) => {
 		console.log(data);
 
-		setIsLoading(true);
-		setSuccessMessage('');
+		const place = {
+			name: data.name,
+			placeType: data.placeType,
+			coordinates: currentCoordinatesPlace
+		}
+
+		try {
+
+			const response = await axios.post('http://localhost:5000/api/createPlaces/', { place });
+
+			const { name, coordinates, placeType } = response.data
+
+			dispatch(addPlace({
+				name: name,
+				placeType: placeType,
+				coordinates: coordinates
+			}));
+
+			setSuccessMessage(' successfully create place!');
+
+		} catch (error) {
+			console.error('Error creating place:', error);
+
+		} finally {
+			setIsLoading(false);
+			reset()
+		}
 	};
 
 	return (

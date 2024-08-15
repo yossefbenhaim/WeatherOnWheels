@@ -6,17 +6,19 @@ import { SlicesNames } from 'models/enums/slicesNames';
 
 import storage from 'redux-persist/lib/storage';
 import currentCoordinatesSelectPlaceReducer from './slice/currentCoordinatesSelectPlace';
+import placesReducer from './slice/playces';
 
 const persistConfig = {
     key: 'root',
     type: storage,
     storage,
-    whitelist: [SlicesNames.CURRENT_COORDINATES_PLACE],
+    whitelist: [SlicesNames.CURRENT_COORDINATES_PLACE, SlicesNames.PLACES],
 };
 
 const rootReducer = combineReducers({
     [SlicesNames.CURRENT_COORDINATES_PLACE]:
         currentCoordinatesSelectPlaceReducer,
+    [SlicesNames.PLACES]: placesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

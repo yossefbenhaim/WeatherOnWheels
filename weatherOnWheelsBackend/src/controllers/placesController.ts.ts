@@ -6,17 +6,19 @@ import shortid from 'shortid';
 export const createPlaces = async (req: Request, res: Response) => {
     try {
         const { place } = req.body;
+        console.log(place);
 
         if (!place) {
             return res.status(400).json({ message: 'Full PLACE is required' });
         }
 
         const id = shortid.generate();
+        console.log('----------ifd', id);
 
         const newPlace = new PlacesModels({
             id: id,
             name: place.name,
-            address: place.address,
+            coordinates: place.coordinates,
             placeType: place.placeType,
         });
 

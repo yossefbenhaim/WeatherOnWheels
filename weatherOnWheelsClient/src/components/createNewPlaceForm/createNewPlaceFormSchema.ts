@@ -1,15 +1,14 @@
-import { Places } from 'models/enums/places';
 import z from 'zod';
 
 export enum CreateNewPlaceFormKey {
     NAME = 'name',
-    TYPE_PLACE = 'typePlace',
+    PLACE_TYPE = 'placeType',
     ADDRESS = 'address',
 }
 
 const CreateNewPlaceSchema = z.object({
     [CreateNewPlaceFormKey.NAME]: z.string().max(25).min(2),
-    [CreateNewPlaceFormKey.TYPE_PLACE]: z.string(),
+    [CreateNewPlaceFormKey.PLACE_TYPE]: z.string(),
     [CreateNewPlaceFormKey.ADDRESS]: z.string(),
 });
 

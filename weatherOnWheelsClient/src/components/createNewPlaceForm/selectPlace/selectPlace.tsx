@@ -11,7 +11,7 @@ const SelectPlace = () => {
 
 	return (
 		<Controller
-			name={CreateNewPlaceFormKey.TYPE_PLACE}
+			name={CreateNewPlaceFormKey.PLACE_TYPE}
 			control={control}
 			render={({ field, fieldState: { error } }) => (
 				<div className='w-full px-2 flex flex-col justify-start items-start'>
