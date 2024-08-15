@@ -5,17 +5,18 @@ import { configureStore } from '@reduxjs/toolkit';
 import { SlicesNames } from 'models/enums/slicesNames';
 
 import storage from 'redux-persist/lib/storage';
-import urlShortcutListReducer from './slice/shortenedUrlList';
+import currentCoordinatesSelectPlaceReducer from './slice/currentCoordinatesSelectPlace';
 
 const persistConfig = {
     key: 'root',
     type: storage,
     storage,
-    whitelist: [SlicesNames.SHORTENED_URL_LIST],
+    whitelist: [SlicesNames.CURRENT_COORDINATES_PLACE],
 };
 
 const rootReducer = combineReducers({
-    [SlicesNames.SHORTENED_URL_LIST]: urlShortcutListReducer,
+    [SlicesNames.CURRENT_COORDINATES_PLACE]:
+        currentCoordinatesSelectPlaceReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

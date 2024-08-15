@@ -25,7 +25,8 @@ const NameField = () => {
 					)}
 				</div>
 			)}
-		/>)
+		/>
+	)
 }
 
 export default NameField

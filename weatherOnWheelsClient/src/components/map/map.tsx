@@ -3,18 +3,23 @@ import "rlayers/control/layers.css";
 
 import { fromLonLat } from "ol/proj";
 import { RControl, RMap, ROSMWebGL } from "rlayers";
+import CreatePlaceLayer from "./layers/createPlaceLayer/createPlaceLayer";
 
 
 
 const ISRAEL_CENTER_COORDS = fromLonLat([35.0818155, 31.4117257]);
 const ISRAEL_DEFAULT_ZOOM = 6.8;
 
-const Map = () => {
+interface Props {
+	width: string
+	height: string
+}
+const Map = ({ height, width }: Props) => {
 
 	return (
 		<RMap
-			width={"100%"}
-			height={"60vh"}
+			width={width}
+			height={height}
 			initial={{
 				center: ISRAEL_CENTER_COORDS,
 				zoom: ISRAEL_DEFAULT_ZOOM,
@@ -26,7 +31,7 @@ const Map = () => {
 			<RControl.RScaleLine />
 			<RControl.RZoom />
 			<RControl.RZoomSlider />
-			{/* <UsersLocationLayer /> */}
+			<CreatePlaceLayer />
 		</RMap>
 	);
 }
